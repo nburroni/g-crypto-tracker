@@ -19,6 +19,14 @@ class ProductsController @Inject()(productsService: ProductsService,
     }
   }
 
-  def getProductPrices(product: String): Action[AnyContent] = TODO
+  def getProductPrices(product: String): Action[AnyContent] = Action.async {
+    this.productsService.getProductPrices(product) map {
+      case Some(prices) =>
+        Ok(Json.toJson(prices))
+      case None =>
+        val res = Map("message" -> "Product not available in all markets")
+        InternalServerError(Json.toJson(res))
+    }
+  }
 
 }
