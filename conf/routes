@@ -9,7 +9,7 @@ GET     /                           controllers.FrontendController.index()
 GET     /api/summary                controllers.HomeController.appSummary
 
 GET     /products                   controllers.ProductsController.getAllSharedProducts
-GET     /products/:product/prices   controllers.ProductsController.getProductPrices
+GET     /products/:product/prices   controllers.ProductsController.getProductPrices(product: String)
 
 # Serve static assets under public directory
 GET     /*file                      controllers.FrontendController.assetOrDefault(file)
