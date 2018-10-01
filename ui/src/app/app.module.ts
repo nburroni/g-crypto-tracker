@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { UiComponentsModule } from './ui-components/ui-components.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    UiComponentsModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
