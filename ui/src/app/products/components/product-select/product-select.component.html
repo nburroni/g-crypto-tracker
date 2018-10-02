@@ -8,10 +8,16 @@
     </mat-select>
   </mat-form-field>
 
-  <product-info *ngIf="displayedProduct"
-                [product]="displayedProduct"
-                [highestPrice]="highestPrice"
-                [lowestPrice]="lowestPrice">
-  </product-info>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <div *ngIf="!loading">
+    <mat-card *ngIf="error" class="error-card">{{error}}</mat-card>
+
+    <product-info *ngIf="!error && displayedProduct"
+                  [product]="displayedProduct"
+                  [highestPrice]="highestPrice"
+                  [lowestPrice]="lowestPrice">
+    </product-info>
+  </div>
 
 </div>

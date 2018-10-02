@@ -10,6 +10,9 @@ import {Product} from "../../../shared/models/product";
 })
 export class ProductSelectComponent implements OnInit {
 
+  error: string;
+  loading: boolean;
+
   productNames: string[];
   displayedProduct: Product;
   lowestPrice: number;
@@ -20,17 +23,28 @@ export class ProductSelectComponent implements OnInit {
   ngOnInit() {
     this.productsService.getProductList()
       .then(productList => this.productNames = productList.products)
-      .catch(console.error);
+      .catch(res => console.error(res.error.message));
   }
 
   productSelected(change: MatSelectChange) {
+    this.reset();
     const product = change.value as string;
     this.productsService.getProductPrices(product)
       .then(res => {
+        this.loading = false;
         this.displayedProduct = res.product;
         this.updatePrices()
       })
-      .catch(console.error);
+      .catch(res => {
+        this.error = res.error.message;
+        this.loading = false;
+      });
+  }
+
+  private reset() {
+    this.loading = true;
+    this.error = undefined;
+    this.displayedProduct = undefined;
   }
 
   updatePrices() {
