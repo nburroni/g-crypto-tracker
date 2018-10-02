@@ -1,0 +1,8 @@
+<div>
+  <h2 class="mat-h2">
+    {{product.name}}
+  </h2>
+  <div>
+    <product-price-card *ngFor="let price of product.prices" [exchangePrice]="price"></product-price-card>
+  </div>
+</div>

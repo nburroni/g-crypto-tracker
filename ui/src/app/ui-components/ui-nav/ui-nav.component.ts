@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'ui-nav',
   templateUrl: './ui-nav.component.html',
-  styleUrls: ['./ui-nav.component.css']
+  styleUrls: ['./ui-nav.component.scss']
 })
 export class UiNavComponent {
 

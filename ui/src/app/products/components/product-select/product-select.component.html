@@ -1,0 +1,13 @@
+<div>
+
+  <mat-form-field *ngIf="productNames">
+    <mat-select placeholder="Select a Product" (selectionChange)="productSelected($event)">
+      <mat-option *ngFor="let product of productNames" [value]="product">
+        {{product}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <product-info *ngIf="displayedProduct" [product]="displayedProduct"></product-info>
+
+</div>
