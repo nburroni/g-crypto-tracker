@@ -1,0 +1,15 @@
+.ps-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 8rem;
+
+  .error-card {
+    background-color: #ebbd19;
+    color: white;
+  }
+
+  mat-form-field {
+    width: 15rem;
+  }
+}

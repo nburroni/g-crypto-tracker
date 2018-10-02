@@ -1,0 +1,11 @@
+<div class="info-container">
+  <h1 class="mat-h1">
+    {{product.name}}
+  </h1>
+  <div class="prices">
+      <product-price-card *ngFor="let exchangePrice of product.prices"
+                          [exchangePrice]="exchangePrice"
+                          [contentColor]="getClassFor(exchangePrice)">
+      </product-price-card>
+  </div>
+</div>

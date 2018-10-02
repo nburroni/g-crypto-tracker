@@ -1,0 +1,17 @@
+.info-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .prices {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    product-price-card {
+      margin: 0 1rem 1rem;
+    }
+  }
+}
