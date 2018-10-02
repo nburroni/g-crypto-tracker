@@ -1,4 +1,4 @@
-<div>
+<div class="ps-container">
 
   <mat-form-field *ngIf="productNames">
     <mat-select placeholder="Select a Product" (selectionChange)="productSelected($event)">
@@ -8,6 +8,10 @@
     </mat-select>
   </mat-form-field>
 
-  <product-info *ngIf="displayedProduct" [product]="displayedProduct"></product-info>
+  <product-info *ngIf="displayedProduct"
+                [product]="displayedProduct"
+                [highestPrice]="highestPrice"
+                [lowestPrice]="lowestPrice">
+  </product-info>
 
 </div>

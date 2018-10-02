@@ -9,6 +9,7 @@ import {ExchangePrice} from "../../../shared/models/exchange-price";
 export class ProductPriceCardComponent {
 
   @Input() exchangePrice: ExchangePrice;
+  @Input() contentColor: string;
 
   constructor() { }
 

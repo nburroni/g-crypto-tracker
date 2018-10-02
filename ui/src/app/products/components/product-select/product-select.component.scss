@@ -1,0 +1,10 @@
+.ps-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 8rem;
+
+  mat-form-field {
+    max-width: 10rem;
+  }
+}

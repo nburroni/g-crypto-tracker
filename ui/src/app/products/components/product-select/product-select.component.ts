@@ -12,6 +12,8 @@ export class ProductSelectComponent implements OnInit {
 
   productNames: string[];
   displayedProduct: Product;
+  lowestPrice: number;
+  highestPrice: number;
 
   constructor(private productsService: ProductsService) { }
 
@@ -24,8 +26,17 @@ export class ProductSelectComponent implements OnInit {
   productSelected(change: MatSelectChange) {
     const product = change.value as string;
     this.productsService.getProductPrices(product)
-      .then(res => this.displayedProduct = res.product)
+      .then(res => {
+        this.displayedProduct = res.product;
+        this.updatePrices()
+      })
       .catch(console.error);
+  }
+
+  updatePrices() {
+    const prices = this.displayedProduct.prices;
+    this.lowestPrice = prices.reduce((min, val) => val.price < min ? val.price : min, prices[0].price);
+    this.highestPrice = prices.reduce((max, val) => val.price > max ? val.price : max, prices[0].price);
   }
 
 }

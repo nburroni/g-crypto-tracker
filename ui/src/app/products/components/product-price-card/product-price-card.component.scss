@@ -1,0 +1,11 @@
+mat-card-header {
+  justify-content: center;
+}
+mat-card-content {
+  &.red {
+    color: red;
+  }
+  &.green {
+    color: #00aa00;
+  }
+}
