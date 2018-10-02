@@ -1,12 +1,15 @@
 <div class="ps-container">
 
-  <mat-form-field *ngIf="productNames">
-    <mat-select placeholder="Select a Product" (selectionChange)="productSelected($event)">
-      <mat-option *ngFor="let product of productNames" [value]="product">
-        {{product}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form class="example-form" *ngIf="productNames">
+    <mat-form-field class="example-full-width">
+      <input type="text" placeholder="Select a Product" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="productSelected($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 
   <mat-spinner *ngIf="loading"></mat-spinner>
 

@@ -8,9 +8,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 
     product-price-card {
-      margin: 0 1rem;
+      margin: 0 1rem 1rem;
     }
   }
 }

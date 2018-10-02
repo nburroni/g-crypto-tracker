@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsService} from "../../services/products.service";
-import {MatSelectChange} from "@angular/material";
+import {MatAutocompleteSelectedEvent, MatSelectChange} from "@angular/material";
 import {Product} from "../../../shared/models/product";
+import {Observable} from "rxjs";
+import {FormControl} from "@angular/forms";
+import {map, startWith} from "rxjs/operators";
 
 @Component({
   selector: 'product-select',
@@ -18,17 +21,26 @@ export class ProductSelectComponent implements OnInit {
   lowestPrice: number;
   highestPrice: number;
 
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
+
   constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
     this.productsService.getProductList()
       .then(productList => this.productNames = productList.products)
       .catch(res => console.error(res.error.message));
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
 
-  productSelected(change: MatSelectChange) {
+  productSelected(event: MatAutocompleteSelectedEvent) {
     this.reset();
-    const product = change.value as string;
+    const product = event.option.value as string;
     this.productsService.getProductPrices(product)
       .then(res => {
         this.loading = false;
@@ -41,16 +53,22 @@ export class ProductSelectComponent implements OnInit {
       });
   }
 
+  updatePrices() {
+    const prices = this.displayedProduct.prices;
+    this.lowestPrice = prices.reduce((min, val) => val.price < min ? val.price : min, prices[0].price);
+    this.highestPrice = prices.reduce((max, val) => val.price > max ? val.price : max, prices[0].price);
+  }
+
   private reset() {
     this.loading = true;
     this.error = undefined;
     this.displayedProduct = undefined;
   }
 
-  updatePrices() {
-    const prices = this.displayedProduct.prices;
-    this.lowestPrice = prices.reduce((min, val) => val.price < min ? val.price : min, prices[0].price);
-    this.highestPrice = prices.reduce((max, val) => val.price > max ? val.price : max, prices[0].price);
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.productNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }

@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ProductSelectComponent } from './components/product-select/product-select.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { ProductPriceCardComponent } from './components/product-price-card/product-price-card.component';
-import {MatCardModule, MatGridListModule, MatProgressSpinnerModule, MatSelectModule} from "@angular/material";
+import {
+  MatAutocompleteModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatSelectModule
+} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -11,6 +18,10 @@ import {MatCardModule, MatGridListModule, MatProgressSpinnerModule, MatSelectMod
     MatSelectModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     ProductSelectComponent,
